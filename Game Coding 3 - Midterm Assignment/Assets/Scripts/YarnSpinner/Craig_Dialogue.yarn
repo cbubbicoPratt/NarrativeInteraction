@@ -1,0 +1,38 @@
+﻿title: Craig_LoadPhase
+---
+<<declare $dialoguePhase_Craig = "">>
+<<setPhase Craig>>
+<<if $dialoguePhase_Craig == "begin">>
+<<jump Craig_Begin01>>
+<<elseif $dialoguePhase_Craig == "comeback">>
+<<jump Craig_Comeback01>>
+<<else>>
+Craig: All that work just to not make any dialogue.
+<<endif>>
+===
+title: Craig_Begin01
+---
+<<camMove Craig_CamRig "pc">>
+You: *huff... puff....*
+<<camMove Craig_CamRig "npc">>
+Craig: You ok pal? You look kinda beat.
+<<camMove Craig_CamRig "pc">>
+You: You think??
+You: Can I just have my Maxwell now...
+<<camMove Craig_CamRig "npc">>
+Craig: Sorry, what?
+Craig: I don't know what you're talking about.
+<<camMove Craig_CamRig "pc">>
+You: ...
+<<camMove Craig_CamRig "npc">>
+Craig: Haha, got you! Here, take a Maxwell. Sucker.
+<<collectMaxwell GameController>>
+<<camMove Craig_CamRig "return">>
+<<getPhase Craig "comeback">> 
+===
+title: Craig_Comeback01
+---
+<<camMove Craig_CamRig "npc">>
+Craig: Alright, you can get out of here now. Your heavy breathing is making me uncomfortable.
+<<camMove Craig_CamRig "return">>
+===

@@ -1,0 +1,34 @@
+﻿title: Herman_LoadPhase
+---
+<<declare $dialoguePhase_Herman = "">>
+<<setPhase Herman>>
+<<if $dialoguePhase_Herman == "begin">>
+<<jump Herman_Begin01>>
+<<elseif $dialoguePhase_Herman == "comeback">>
+<<jump Herman_Comeback01>>
+<<else>>
+Herman: Maybe you should make some dialogue before crossing that gap.
+<<endif>>
+===
+title: Herman_Begin01
+---
+<<camMove Herman_CamRig "npc">>
+Herman: I'd be careful if I were you.
+Herman: This gap looks unforgiving.
+<<camMove Herman_CamRig "pc">>
+You: Woah, deadly even?
+<<camMove Herman_CamRig "npc">>
+Herman: Well as deadly as a narrative-driven game can be.
+Herman: Watch your step.
+<<camMove Herman_CamRig "pc">>
+You: Will do.
+<<camMove Herman_CamRig "return">>
+<<getPhase Herman "comeback">>
+===
+title: Herman_Comeback01
+---
+<<camMove Herman_CamRig "npc">>
+Herman: If you're thinking this challenge is impossible, it probably is.
+Herman: I mean, how worth it can virtual cats be anyway?
+<<camMove Herman_CamRig "return">>
+===

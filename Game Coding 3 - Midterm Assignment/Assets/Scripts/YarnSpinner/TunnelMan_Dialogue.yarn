@@ -1,0 +1,29 @@
+﻿title: TunnelMan_LoadPhase
+---
+<<declare $dialoguePhase_TunnelMan= "">>
+<<setPhase TunnelMan>>
+<<if $dialoguePhase_TunnelMan == "begin">>
+<<jump TunnelMan_Begin01>>
+<<elseif $dialoguePhase_TunnelMan == "comeback">>
+<<jump TunnelMan_Comeback01>>
+<<else>>
+Someone: You are not yet ready.
+<<endif>>
+===
+title: TunnelMan_Begin01
+---
+<<camMove TunnelMan_CamRig "npc">>
+Someone: You've done well to get here.
+Someone: You've journeyed long and hard and found all you need.
+Someone: There is no need for words. Take this.
+<<collectMaxwell GameController>>
+<<camMove TunnelMan_CamRig "return">>
+<<getPhase TunnelMan "comeback">>
+===
+title: TunnelMan_Comeback01
+---
+<<camMove TunnelMan_CamRig "npc">>
+Someone: You seem troubled.
+Someone: Could it be you didn't really find what you wanted?
+<<camMove TunnelMan_CamRig "return">>
+===

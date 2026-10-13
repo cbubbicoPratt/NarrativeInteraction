@@ -1,0 +1,29 @@
+﻿title: Penelope_LoadPhase
+---
+<<declare $dialoguePhase_Penelope= "">>
+<<setPhase Penelope>>
+<<if $dialoguePhase_Penelope == "begin">>
+<<jump Penelope_Begin01>>
+<<elseif $dialoguePhase_Penelope == "comeback">>
+<<jump Penelope_Comeback01>>
+<<else>>
+Penelope: You didn't make this dialogue yet!
+<<endif>>
+===
+title: Penelope_Begin01
+---
+<<camMove Penelope_CamRig "npc">>
+Penelope: Wow you actually found me!
+Penelope: I'd say that deserves a Maxwell.
+<<collectMaxwell GameController>>
+<<camMove Penelope_CamRig "pc">>
+You: Wow, thanks!
+<<camMove Penelope_CamRig "return">>
+<<getPhase Penelope "comeback">>
+===
+title: Penelope_Comeback01
+---
+<<camMove Penelope_CamRig "npc">>
+Penelope: I've given you all I can! Beat it!
+<<camMove Penelope_CamRig "return">>
+===

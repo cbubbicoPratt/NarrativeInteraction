@@ -1,0 +1,66 @@
+﻿title: Vivian_LoadPhase
+---
+<<declare $gateOpen = false>>
+<<declare $totalMaxwellsVivian = 0>>
+<<declare $dialoguePhase_Vivian= "">>
+<<setMaxwells Vivian>>
+<<checkGate Vivian>>
+<<if $totalMaxwellsVivian >= 9 && !$gateOpen>>
+<<getPhase Vivian "questCompleted">>
+<<endif>>
+<<setPhase Vivian>>
+<<if $dialoguePhase_Vivian == "begin">>
+<<jump Vivian_Begin01>>
+<<elseif $dialoguePhase_Vivian == "comeback">>
+<<jump Vivian_Comeback01>>
+<<elseif $dialoguePhase_Vivian == "questCompleted">>
+<<jump Vivian_QuestCompleted01>>
+<<elseif $dialoguePhase_Vivian == "rewardGiven">>
+<<jump Vivian_RewardGiven01>>
+<<else>>
+Vivian: Hey you didn't give me this dialogue yet!!
+<<endif>>
+===
+title: Vivian_Begin01
+---
+<<camMove Vivian_CamRig "npc">>
+Vivian: I hear that if you have 9 Maxwells this gate will open.
+Vivian: I heard that because I'm the gatekeeper.
+<<camMove Vivian_CamRig "pc">>
+You: Noted!
+<<camMove Vivian_CamRig "return">>
+<<getPhase Vivian "comeback">>
+===
+title: Vivian_Comeback01
+---
+<<camMove Vivian_CamRig "npc">>
+Vivian: That's right.
+Vivian: *9* Maxwells is all you need to open this gate. 9.
+<<camMove Vivian_CamRig "pc">>
+You: Ok.
+<<camMove Vivian_CamRig "npc">>
+Vivian: So go get them.
+<<camMove Vivian_CamRig "pc">>
+You: Ok.
+<<camMove Vivian_CamRig "npc">>
+Vivian: Ok.
+<<camMove Vivian_CamRig "return">>
+===
+title: Vivian_QuestCompleted01
+---
+<<camMove Vivian_CamRig "npc">>
+Vivian: Well look at that! You got 9 Maxwells!
+Vivian: I'll open the gate for you!
+<<camMove Vivian_CamRig "pc">>
+You: Great!
+<<gateOpen Gate>>
+<<camMove Vivian_CamRig "return">>
+<<getPhase Vivian "rewardGiven">>
+===
+title: Vivian_RewardGiven01
+---
+<<camMove Vivian_CamRig "npc">>
+Vivian: Before I could open the gate for you it spontaneously disappeared.
+Vivian: This is definitely what happened. Definitely.
+<<camMove Vivian_CamRig "return">>
+===

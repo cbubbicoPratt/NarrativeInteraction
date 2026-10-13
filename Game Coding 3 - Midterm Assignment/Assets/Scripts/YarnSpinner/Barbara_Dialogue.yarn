@@ -1,0 +1,42 @@
+﻿title: Barbara_LoadPhase
+---
+<<declare $dialoguePhase_Barbara= "">>
+<<setPhase Barbara>>
+<<if $dialoguePhase_Barbara == "begin">>
+<<jump Barbara_Begin01>>
+<<elseif $dialoguePhase_Barbara == "comeback">>
+<<jump Barbara_Comeback01>>
+<<else>>
+Barbara: Why are you here if you didn't give me any dialogue!!
+<<endif>>
+===
+title: Barbara_Begin01
+---
+<<camMove Barbara_CamRig "npc">>
+Barbara: Yahaha! You found my secret alcove!
+<<camMove Barbara_CamRig "pc">>
+You: Secret??
+<<camMove Barbara_CamRig "npc">>
+Barbara: Yes!
+Barbara: You're the first person to come here and talk to me.
+<<camMove Barbara_CamRig "pc">>
+You: Oh.
+<<camMove Barbara_CamRig "npc">>
+Barbara: Here's a Maxwell!
+<<collectMaxwell GameController>>
+<<camMove Barbara_CamRig "pc">>
+You: Thanks!
+<<camMove Barbara_CamRig "return">>
+<<getPhase Barbara "comeback">>
+===
+title: Barbara_Comeback01
+---
+<<camMove Barbara_CamRig "pc">>
+You: So why does nobody come to visit you?
+<<camMove Barbara_CamRig "npc">>
+Barbara: Actually, I don't think any of us can move.
+Barbara: We don't even have RigidBodies!!
+<<camMove Barbara_CamRig "pc">>
+You: Ah yes. This makes perfect sense to me.
+<<camMove Barbara_CamRig "return">>
+===

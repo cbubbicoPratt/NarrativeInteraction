@@ -1,0 +1,135 @@
+title: Daniel_LoadPhase
+---
+<<declare $totalMaxwellsDaniel = 0>>
+<<declare $dialoguePhase_Daniel = "">>
+<<setMaxwells Daniel>>
+<<if $totalMaxwellsDaniel >= 10>>
+<<getPhase Daniel "questCompleted">>
+<<endif>>
+<<setPhase Daniel>>
+<<if $dialoguePhase_Daniel == "begin">>
+<<jump Daniel_Begin01>>
+<<elseif $dialoguePhase_Daniel == "comeback" >>
+<<jump Daniel_Comeback01>>
+<<elseif $dialoguePhase_Daniel == "questStarted">>
+<<jump Daniel_QuestStarted01>>
+<<elseif $dialoguePhase_Daniel == "questCompleted">>
+<<jump Daniel_QuestCompleted01>>
+<<elseif $dialoguePhase_Daniel == "rewardGiven">>
+<<jump Daniel_RewardGiven01>>
+<<else>>
+Daniel: Stop breaking my game!
+<<endif>>
+===
+title: Daniel_Begin01
+---
+<<camMove Daniel_CamRig "npc">>
+Daniel: Hello, stranger!
+<<camMove Daniel_CamRig "pc">>
+You: Hi!
+<<camMove Daniel_CamRig "npc">>
+Daniel: I'm Daniel!
+Daniel: You're new here, aren't you?
+Daniel: I should know, there's only 10 other people in this world!
+<<camMove Daniel_CamRig "pc">>
+You: Why, yes I am!
+<<camMove Daniel_CamRig "npc">>
+Daniel: You probably want to know what it is I do then, don't you?
+<<camMove Daniel_CamRig "pc">>
+->Yes
+    You: Why yes! What do you do here, Daniel?
+    <<jump Daniel_Begin02>>
+->No
+    <<jump DanielBegin03>>
+===
+title: Daniel_Begin02
+---
+<<camMove Daniel_CamRig "npc">>
+Daniel: I harvest Maxwells!
+<<camMove Daniel_CamRig "pc">>
+You: ...I'm sorry, did you say Maxwells?
+<<camMove Daniel_CamRig "npc">>
+Daniel: Yes! Cute little things, they are.
+Daniel: I'm guessing from your robotic expression that you've never heard of them before.
+Daniel: Maxwells are these small cats that like to hang out around this here world!
+<<camMove Daniel_CamRig "pc">>
+You: And you.... collect them?
+<<camMove Daniel_CamRig "npc">>
+Daniel: Yes!
+<<camMove Daniel_CamRig "pc">>
+You: ...Why?
+<<camMove Daniel_CamRig "npc">>
+Daniel: So anyway, if you collect 10 Maxwells and bring them to me, something great is bound to happen!
+Daniel: You can find Maxwells around the world, or from other people!
+Daniel: Good Luck!
+<<camMove Daniel_CamRig "pc">>
+You: ...ok man.
+<<camMove Daniel_CamRig "return">>
+<<getPhase Daniel "questStarted">>
+===
+title: DanielBegin03
+---
+You: Eh, I kinda don't care.
+<<camMove Daniel_CamRig "npc">>
+Daniel: ...oh.
+Daniel: Well... I didn't want to tell you anyways!
+<<camMove Daniel_CamRig "pc">>
+You: Cool!
+<<camMove Daniel_CamRig "return">>
+<<getPhase Daniel "comeback">>
+===
+title: Daniel_Comeback01
+---
+<<camMove Daniel_CamRig "npc">>
+Daniel: Aha! You're back! You do care after all!
+Daniel: So, ready to hear about what it is I do??
+<<camMove Daniel_CamRig "pc">>
+-> Yes
+    You: God, fine I guess. Tell me.
+    <<jump Daniel_Begin02>>
+-> No
+    You: No... you're really freaking me out actually.
+<<camMove Daniel_CamRig "return">>
+===
+title: Daniel_QuestStarted01
+---
+<<camMove Daniel_CamRig "npc">>
+Daniel: Ah, you're back!
+Daniel: There's still some Maxwells out there, so keep looking!
+Daniel: Remember there are 10 Maxwells total! Happy hunting!
+<<camMove Daniel_CamRig "pc">>
+You: ...Right.
+<<camMove Daniel_CamRig "return">>
+===
+title: Daniel_QuestCompleted01
+---
+<<camMove Daniel_CamRig "npc">>
+Daniel: Ah, look here! You found all the Maxwells!
+<<camMove Daniel_CamRig "pc">>
+You: Yeah!
+<<camMove Daniel_CamRig "npc">>
+Daniel: You know what that means!!
+<<camMove Daniel_CamRig "pc">>
+You: No! What??
+<<camMove Daniel_CamRig "npc">>
+Daniel: ....
+Daniel: .....i actually don't know
+Daniel: you're the first one to ever do this :/
+<<camMove Daniel_CamRig "pc">>
+You: ...ah.
+You: Do I get some kind of reward or something?
+<<camMove Daniel_CamRig "npc">>
+Daniel: Oh yes! Of course!
+Daniel: Although.... I don't really have much to give.
+Daniel: Oh I know! Let's have a party! I'll invite all the 12 people you know!
+<<camMove Daniel_CamRig "pc">>
+You: Aw sweet!!
+<<camMove Daniel_CamRig "return">>
+<<getPhase Daniel "rewardGiven">>
+===
+title: Daniel_RewardGiven01
+---
+<<camMove Daniel_CamRig "npc">>
+Daniel: You aren't actually supposed to see this text!
+<<camMove Daniel_CamRig "return">>
+===

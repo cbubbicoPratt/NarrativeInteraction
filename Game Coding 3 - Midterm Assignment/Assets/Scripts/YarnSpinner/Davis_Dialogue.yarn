@@ -1,0 +1,42 @@
+﻿title: Davis_LoadPhase
+---
+<<declare $dialoguePhase_Davis = "">>
+<<setPhase Davis>>
+<<if $dialoguePhase_Davis == "begin">>
+<<jump Davis_Begin01>>
+<<elseif $dialoguePhase_Davis == "comeback">>
+<<jump Davis_Comeback01>>
+<<else>>
+Davis: Did you forget to program dialogue?
+<<endif>>
+===
+title: Davis_Begin01
+---
+<<declare $loser = false>>
+<<camMove Davis_CamRig "npc">>
+Davis: Did you fall?
+<<camMove Davis_CamRig "pc">>
+-> Yes
+    <<camMove Davis_CamRig "npc">>
+    Davis: HAH! Nice going, loser.
+    <<set $loser = true>>
+-> No
+    <<camMove Davis_CamRig "npc">>
+    Davis: Really? Are you lying?
+<<camMove Davis_CamRig "return">>
+<<getPhase Davis "comeback">>
+===
+title: Davis_Comeback01
+---
+<<if $loser>>
+<<camMove Davis_CamRig "npc">>
+Davis: Way to go dummy!
+Davis: Now go away, I don't want your lameness spreading to me.
+<<camMove Davis_CamRig "return">>
+<<else>>
+<<camMove Davis_CamRig "npc">>
+Davis: Dishonesty won't get you far.
+Davis: Only the biggest losers lie.
+<<camMove Davis_CamRig "return">>
+<<endif>>
+===

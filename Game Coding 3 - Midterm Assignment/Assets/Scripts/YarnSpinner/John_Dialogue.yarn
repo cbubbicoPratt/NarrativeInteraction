@@ -1,0 +1,58 @@
+﻿title: John_LoadPhase
+---
+<<declare $dialoguePhase_John = "">>
+<<setPhase John>>
+<<if $dialoguePhase_John == "begin">>
+<<jump John_Begin01>>
+<<elseif $dialoguePhase_John == "comeback">>
+<<jump John_Comeback01>>
+<<elseif $dialoguePhase_John == "rewardGiven">>
+<<jump John_RewardGiven01>>
+<<else>>
+John: My boss told me you forgot to add dialogue.
+<<endif>>
+===
+title: John_Begin01
+---
+<<camMove John_CamRig "npc">>
+John: Hey there, I'm John.
+<<camMove John_CamRig "pc">>
+You: Oh wow! You're John from that thing!
+<<camMove John_CamRig "npc">>
+John: What?
+<<camMove John_CamRig "pc">>
+You: Ah... nothing. Nevermind.
+You: So do you have a Maxwell for me?
+<<camMove John_CamRig "npc">>
+John: Nope. I'm barely scraping by as it is.
+John: My job barely pays me and my boss won't even give me a week off to go to my favorite convention!
+John: It really sucks.
+<<camMove John_CamRig "pc">>
+You: I'm sorry to hear that John.
+You: But something tells me things will get better for you.
+<<camMove John_CamRig "npc">>
+John: Thanks. I doubt it.
+<<camMove John_CamRig "return">>
+<<getPhase John "comeback">>
+===
+title: John_Comeback01
+---
+<<camMove John_CamRig "pc">>
+You: Y'know John, maybe you should just stick it to your boss and take a week's leave anyway.
+You: What is he gonna do, fire you?
+<<camMove John_CamRig "npc">>
+John: Yes.
+<<camMove John_CamRig "pc">>
+You: Oh. Well so what? Then at least you won't have a job you hate!
+You: It can't hurt, can it?
+<<camMove John_CamRig "npc">>
+John: ...
+<<camMove John_CamRig "return">>
+<<getPhase John "rewardGiven">>
+===
+title: John_RewardGiven01
+---
+<<camMove John_CamRig "npc">>
+John: ...
+<<camMove John_CamRig "return">>
+===

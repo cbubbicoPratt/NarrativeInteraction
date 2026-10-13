@@ -1,0 +1,38 @@
+﻿title: Laura_LoadPhase
+---
+<<declare $dialoguePhase_Laura = "">>
+<<setPhase Laura>>
+<<if $dialoguePhase_Laura == "begin">>
+<<jump Laura_Begin01>>
+<<elseif $dialoguePhase_Laura == "comeback">>
+<<jump Laura_Comeback01>>
+<<else>>
+Laura: HELP I HAVE NO DIALOGUE
+<<endif>>
+===
+title: Laura_Begin01
+---
+<<camMove Laura_CamRig "npc">>
+Laura: HELP HOW DID I GET HERE
+<<camMove Laura_CamRig "pc">>
+You: OH GOD WHAT'S WRONG
+<<camMove Laura_CamRig "npc">>
+Laura: Oh hi!! You came for a Maxwell, right??
+<<camMove Laura_CamRig "pc">>
+You: I- uh... yeah?
+<<camMove Laura_CamRig "npc">>
+Laura: Here you go!
+<<collectMaxwell GameController>>
+<<camMove Laura_CamRig "pc">>
+You: Thanks...
+<<camMove Laura_CamRig "return">>
+<<getPhase Laura "comeback">>
+===
+title: Laura_Comeback01
+---
+<<camMove Laura_CamRig "pc">>
+You: Um... are you ok?
+<<camMove Laura_CamRig "npc">>
+Laura: No!
+<<camMove Laura_CamRig "return">>
+===

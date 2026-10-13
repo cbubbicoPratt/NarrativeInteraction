@@ -1,0 +1,34 @@
+﻿title: Philip_LoadPhase
+---
+<<declare $dialoguePhase_Philip= "">>
+<<setPhase Philip>>
+<<if $dialoguePhase_Philip == "begin">>
+<<jump Philip_Begin01>>
+<<elseif $dialoguePhase_Philip == "comeback">>
+<<jump Philip_Comeback01>>
+<<endif>>
+===
+title: Philip_Begin01
+---
+<<camMove Philip_CamRig "npc">>
+Philip: Hi.
+<<camMove Philip_CamRig "pc">>
+You: Hi!
+<<camMove Philip_CamRig "npc">>
+Philip: Here's a Maxwell.
+<<collectMaxwell GameController>>
+<<camMove Philip_CamRig "pc">>
+You: Thanks!
+<<camMove Philip_CamRig "npc">>
+Philip: Don't mention it.
+<<camMove Philip_CamRig "return">>
+<<getPhase Philip "comeback">>
+===
+title: Philip_Comeback01
+---
+<<camMove Philip_CamRig "pc">>
+You: Not very talkative are you?
+<<camMove Philip_CamRig "npc">>
+Philip: No.
+<<camMove Philip_CamRig "return">>
+===

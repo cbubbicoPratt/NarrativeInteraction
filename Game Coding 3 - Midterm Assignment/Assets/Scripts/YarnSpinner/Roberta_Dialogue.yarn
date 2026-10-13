@@ -1,0 +1,38 @@
+﻿title: Roberta_LoadPhase
+---
+<<declare $dialoguePhase_Roberta = "">>
+<<setPhase Roberta>>
+<<if $dialoguePhase_Roberta == "begin">>
+<<jump Roberta_Begin01>>
+<<elseif $dialoguePhase_Roberta == "comeback">>
+<<jump Robreta_Comeback01>>
+<<else>>
+Roberta: Why are you here?? You didnt even give me dialogue!!
+<<endif>>
+===
+title: Roberta_Begin01
+---
+<<camMove Roberta_CamRig "npc">>
+Roberta: SHHH!!! Are you trying to give away my hiding spot??
+<<camMove Roberta_CamRig "pc">>
+You: Oh, sorry.
+You: What are you hiding from?
+<<camMove Roberta_CamRig "npc">>
+Roberta: Daniel wants my Maxwell.
+Roberta: But he can't have it cause its MINE!!!!
+<<camMove Roberta_CamRig "pc">>
+You: ...can I have it?
+<<camMove Roberta_CamRig "npc">>
+Roberta: Oh yeah sure! I don't see why not.
+<<collectMaxwell GameController>>
+<<camMove Roberta_CamRig "pc">>
+You: Thanks!
+<<camMove Roberta_CamRig "return">>
+<<getPhase Roberta "comeback">>
+===
+title: Robreta_Comeback01
+---
+<<camMove Roberta_CamRig "npc">>
+Roberta: Don't go giving that Maxwell to Daniel now!
+<<camMove Roberta_CamRig "return">>
+===
