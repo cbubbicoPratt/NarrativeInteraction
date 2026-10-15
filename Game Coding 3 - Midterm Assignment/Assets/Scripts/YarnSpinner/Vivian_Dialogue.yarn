@@ -1,13 +1,13 @@
 ﻿title: Vivian_LoadPhase
 ---
-<<declare $gateOpen = false>>
-<<declare $totalMaxwellsVivian = 0>>
+//<<declare $gateOpen = false>>
+//<<declare $totalMaxwellsVivian = 0>>
 <<declare $dialoguePhase_Vivian= "">>
-<<setMaxwells Vivian>>
-<<checkGate Vivian>>
-<<if $totalMaxwellsVivian >= 9 && !$gateOpen>>
-<<getPhase Vivian "questCompleted">>
-<<endif>>
+//<<setMaxwells Vivian>>
+//<<checkGate Vivian>>
+//<<if $totalMaxwellsVivian >= 9 && !$gateOpen>>
+//<<getPhase Vivian "questCompleted">>
+//<<endif>>
 <<setPhase Vivian>>
 <<if $dialoguePhase_Vivian == "begin">>
 <<jump Vivian_Begin01>>

@@ -91,27 +91,27 @@ public class _NPCInteract : MonoBehaviour
             Debug.LogError("String passed in YarnScript does not match any current dialogue phase in npcData scriptableObject");
         }
     }
+    
+    // [YarnCommand("setMaxwells")]
+    // public void SetMaxwells()
+    // {
+    //     //InMemoryVariableStorage vStore = GameObject.FindAnyObjectByType<InMemoryVariableStorage>();
+    //     vStore.SetValue("$totalMaxwells" + storyData.npcName, _GameController.instance.totalMaxwells);
+    // }
 
-    [YarnCommand("setMaxwells")]
-    public void SetMaxwells()
-    {
-        //InMemoryVariableStorage vStore = GameObject.FindAnyObjectByType<InMemoryVariableStorage>();
-        vStore.SetValue("$totalMaxwells" + storyData.npcName, _GameController.instance.totalMaxwells);
-    }
-
-    [YarnCommand("checkGate")]
-    public void CheckGate()
-    {
-        //InMemoryVariableStorage vStore = GameObject.FindAnyObjectByType<InMemoryVariableStorage>();
-        if (FindAnyObjectByType<_GateOpen>() == null)
-        {
-            vStore.SetValue("$gateOpen", true);
-        }
-        else
-        {
-            vStore.SetValue("$gateOpen", false);
-        }
-    }
+    // [YarnCommand("checkGate")]
+    // public void CheckGate()
+    // {
+    //     //InMemoryVariableStorage vStore = GameObject.FindAnyObjectByType<InMemoryVariableStorage>();
+    //     if (FindAnyObjectByType<_GateOpen>() == null)
+    //     {
+    //         vStore.SetValue("$gateOpen", true);
+    //     }
+    //     else
+    //     {
+    //         vStore.SetValue("$gateOpen", false);
+    //     }
+    //}
 
     public void OnApplicationQuit()
     {

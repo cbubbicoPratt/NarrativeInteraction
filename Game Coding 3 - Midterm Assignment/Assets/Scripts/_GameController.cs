@@ -119,6 +119,22 @@ public class _GameController : MonoBehaviour
         maxwellUpdate.Invoke(totalMaxwells);
     }
 
+    [YarnCommand("checkMaxwells")]
+    public void CheckMaxwells()
+    {
+        Debug.Log("Checked Maxwells: " + totalMaxwells);
+        if (totalMaxwells == 9 && !gateOpen)
+        {
+            GameObject.FindGameObjectWithTag("Gatekeeper").GetComponent<_NPCInteract>().storyData.currentPhase =
+                npcData.dialogPhase.questCompleted;
+            Debug.Log("Gate can now be opened.");
+        }
+        else if (totalMaxwells == 10)
+        {
+            GameObject.FindGameObjectWithTag("Daniel").GetComponent<_NPCInteract>().storyData.currentPhase = npcData.dialogPhase.questCompleted;
+            Debug.Log("Game can now be completed.");
+        }
+    }
     public void LoadMaxwells()
     {
         //when we load the scene we want to get rid of every maxwell we collected

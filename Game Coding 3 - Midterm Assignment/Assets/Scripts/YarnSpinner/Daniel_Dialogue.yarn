@@ -1,11 +1,12 @@
 title: Daniel_LoadPhase
 ---
-<<declare $totalMaxwellsDaniel = 0>>
+//<<declare $totalMaxwellsDaniel = 0>>
 <<declare $dialoguePhase_Daniel = "">>
-<<setMaxwells Daniel>>
-<<if $totalMaxwellsDaniel >= 10>>
-<<getPhase Daniel "questCompleted">>
-<<endif>>
+<<checkMaxwells GameController>>
+//<<setMaxwells Daniel>>
+//<<if $totalMaxwellsDaniel >= 10>>
+//<<getPhase Daniel "questCompleted">>
+//<<endif>>
 <<setPhase Daniel>>
 <<if $dialoguePhase_Daniel == "begin">>
 <<jump Daniel_Begin01>>
