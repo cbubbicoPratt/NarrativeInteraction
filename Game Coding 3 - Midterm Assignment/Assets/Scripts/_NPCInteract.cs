@@ -3,28 +3,69 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Yarn.Unity;
 
+public enum iType {npc, item}
+
 public class _NPCInteract : MonoBehaviour
 {
-    public TextMeshProUGUI promptText;
-    public string interactText;
-    public bool canInteract;
-    public DialogueRunner npcDialogue;
-    public _NPC_CamRig npcCamRig;
-    public npcData storyData;
-    public InMemoryVariableStorage vStore;
-
-    private void Start()
+    [Tooltip("Select the type of interaction to gain access to necessary variables.")]
+    public iType type;
+    
+    [System.Serializable]
+    public struct TextData
     {
-        npcCamRig = transform.GetComponentInChildren<_NPC_CamRig>();
-        npcDialogue = FindAnyObjectByType<DialogueRunner>();
-        vStore = FindAnyObjectByType<InMemoryVariableStorage>();
+        public TextMeshProUGUI promptText;
+        public string interactText;
+    }
+    [Header("Text Data Variables")]
+    public TextData textData;
+    
+    public bool canInteract;
+
+    [System.Serializable]
+    public struct DialogueData
+    {
+        public DialogueRunner npcDialogue;
+        public npcData storyData;
+        public InMemoryVariableStorage vStore;
     }
 
+    [Header("Story & YarnSpinner Variables")] 
+    public DialogueData dialogueData;
+    
+    [System.Serializable]
+    public struct CamData
+    {
+        public GameObject npcCamPrefab;
+        public _NPC_CamRig npcCamRig;
+    }
+    [Header("NPC Cam Rig Variables")]
+    public CamData camData;
+    
+    //---------EDITOR METHODS---------//
+
+    public void LoadText()
+    {
+        textData.promptText = GameObject.FindGameObjectWithTag("pText").GetComponent<TextMeshProUGUI>();
+    }
+
+    public void LoadNpcCamPrefab()
+    {
+        Instantiate(camData.npcCamPrefab, transform);
+        camData.npcCamRig = transform.GetComponentInChildren<_NPC_CamRig>();
+    }
+
+    public void LoadYS()
+    {
+        dialogueData.npcDialogue = GameObject.FindGameObjectWithTag("DialogueRunner").GetComponent<DialogueRunner>();
+        dialogueData.vStore = dialogueData.npcDialogue.GetComponent<InMemoryVariableStorage>();
+    }
+    //---------RUNTIME METHODS---------//
+    
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            SetText(interactText);
+            SetText(textData.interactText);
             canInteract = true;
         }
     }
@@ -40,7 +81,7 @@ public class _NPCInteract : MonoBehaviour
     
     public void SetText(string text)
     {
-        promptText.text = text;
+        textData.promptText.text = text;
     }
 
     private void Update()
@@ -49,10 +90,10 @@ public class _NPCInteract : MonoBehaviour
         {
             if (Keyboard.current.eKey.wasPressedThisFrame)
             {
-                Debug.Log("Starting npc dialogue: " + storyData.npcName);
+                Debug.Log("Starting npc dialogue: " + dialogueData.storyData.npcName);
                 SetText("");
-                npcCamRig.MovePlayer();
-                npcDialogue.StartDialogue(storyData.startingNode);
+                camData.npcCamRig.MovePlayer();
+                dialogueData.npcDialogue.StartDialogue(dialogueData.storyData.startingNode);
                 canInteract = false;
             }
         }
@@ -62,8 +103,8 @@ public class _NPCInteract : MonoBehaviour
     public void SetDialogPhase()
     {
         //InMemoryVariableStorage vStore = GameObject.FindAnyObjectByType<InMemoryVariableStorage
-        vStore.SetValue("$dialoguePhase_" + storyData.npcName, storyData.currentPhase.ToString());
-        Debug.Log(storyData.currentPhase.ToString());
+        dialogueData.vStore.SetValue("$dialoguePhase_" + dialogueData.storyData.npcName, dialogueData.storyData.currentPhase.ToString());
+        Debug.Log(dialogueData.storyData.currentPhase.ToString());
     }
 
     [YarnCommand("getPhase")]
@@ -72,19 +113,19 @@ public class _NPCInteract : MonoBehaviour
         Debug.Log(phase);
         if (phase == "comeback")
         {
-            storyData.currentPhase = npcData.dialogPhase.comeback;
+            dialogueData.storyData.currentPhase = npcData.dialogPhase.comeback;
         }
         else if (phase == "questStarted")
         {
-            storyData.currentPhase = npcData.dialogPhase.questStarted;
+            dialogueData.storyData.currentPhase = npcData.dialogPhase.questStarted;
         }
         else if (phase == "questCompleted")
         {
-            storyData.currentPhase = npcData.dialogPhase.questCompleted;
+            dialogueData.storyData.currentPhase = npcData.dialogPhase.questCompleted;
         }
         else if (phase == "rewardGiven")
         {
-            storyData.currentPhase = npcData.dialogPhase.rewardGiven;
+            dialogueData.storyData.currentPhase = npcData.dialogPhase.rewardGiven;
         }
         else
         {
@@ -115,6 +156,6 @@ public class _NPCInteract : MonoBehaviour
 
     public void OnApplicationQuit()
     {
-        storyData.DialogReset();
+        dialogueData.storyData.DialogReset();
     }
 }

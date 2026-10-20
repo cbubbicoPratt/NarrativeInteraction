@@ -125,13 +125,13 @@ public class _GameController : MonoBehaviour
         Debug.Log("Checked Maxwells: " + totalMaxwells);
         if (totalMaxwells == 9 && !gateOpen)
         {
-            GameObject.FindGameObjectWithTag("Gatekeeper").GetComponent<_NPCInteract>().storyData.currentPhase =
+            GameObject.FindGameObjectWithTag("Gatekeeper").GetComponent<_NPCInteract>().dialogueData.storyData.currentPhase =
                 npcData.dialogPhase.questCompleted;
             Debug.Log("Gate can now be opened.");
         }
         else if (totalMaxwells == 10)
         {
-            GameObject.FindGameObjectWithTag("Daniel").GetComponent<_NPCInteract>().storyData.currentPhase = npcData.dialogPhase.questCompleted;
+            GameObject.FindGameObjectWithTag("Daniel").GetComponent<_NPCInteract>().dialogueData.storyData.currentPhase = npcData.dialogPhase.questCompleted;
             Debug.Log("Game can now be completed.");
         }
     }
