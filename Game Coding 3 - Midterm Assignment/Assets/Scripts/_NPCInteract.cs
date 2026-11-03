@@ -27,6 +27,7 @@ public class _NPCInteract : MonoBehaviour
         public DialogueRunner npcDialogue;
         public npcData storyData;
         public InMemoryVariableStorage vStore;
+        public _NPCStateCheck stateCheck;
     }
 
     [Header("Story & YarnSpinner Variables")] 
@@ -92,8 +93,11 @@ public class _NPCInteract : MonoBehaviour
             {
                 Debug.Log("Starting npc dialogue: " + dialogueData.storyData.npcName);
                 SetText("");
-                camData.npcCamRig.MovePlayer();
-                dialogueData.npcDialogue.StartDialogue(dialogueData.storyData.startingNode);
+                pState currentState = GameObject.FindGameObjectWithTag("Player").GetComponent<_PlayerStateMachine>().playerState;
+                string startingNodeName = dialogueData.stateCheck.CheckState(currentState);
+                dialogueData.npcDialogue.StartDialogue(startingNodeName);
+                //camData.npcCamRig.MovePlayer();
+                //dialogueData.npcDialogue.StartDialogue(dialogueData.storyData.startingNode);
                 canInteract = false;
             }
         }

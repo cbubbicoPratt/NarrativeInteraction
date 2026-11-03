@@ -1,8 +1,9 @@
-﻿title: Vivian_LoadPhase
+title: Vivian_LoadPhase
 ---
 //<<declare $gateOpen = false>>
 //<<declare $totalMaxwellsVivian = 0>>
 <<declare $dialoguePhase_Vivian= "">>
+<<checkMaxwells GameController>>
 //<<setMaxwells Vivian>>
 //<<checkGate Vivian>>
 //<<if $totalMaxwellsVivian >= 9 && !$gateOpen>>

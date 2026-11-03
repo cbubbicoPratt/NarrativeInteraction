@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 1232862560242487124}
   - component: {fileID: 6653522242046153713}
   m_Layer: 0
-  m_Name: Daniel_cCam
+  m_Name: Name_cCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
