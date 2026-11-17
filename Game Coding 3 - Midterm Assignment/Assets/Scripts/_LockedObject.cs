@@ -1,8 +1,8 @@
 using TMPro;
 using UnityEngine;
-using Yarn.Compiler;
+using UnityEngine.InputSystem;
 
-public class _LockedObject : MonoBehaviour, iKeyHandler
+public class _LockedObject : MonoBehaviour, IKeyHandler
 {
     public bool canBeUnlocked;
     public bool canInteract;
@@ -45,5 +45,19 @@ public class _LockedObject : MonoBehaviour, iKeyHandler
     public void setText(string txt)
     {
         interactPrompt.text = txt;
+    }
+
+    public void Update()
+    {
+        if (canInteract)
+        {
+            if (Keyboard.current.eKey.wasPressedThisFrame)
+            {
+                setText("");
+                _KeyInventoryManager.instance.UsedKey();
+                canInteract = false;
+                Debug.Log("Treasure chest opened!");
+            }
+        }
     }
 }

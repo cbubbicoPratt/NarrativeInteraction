@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface iKeyHandler
+public interface IKeyHandler
 {
     public void CanUnlock();
     public void RemoveKey();

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class _KeyInventoryManager : MonoBehaviour
 {
     public static _KeyInventoryManager instance { get; private set;}
-    public List<iKeyHandler> allLockedObjects = new List<iKeyHandler>();
+    public List<IKeyHandler> allLockedObjects = new List<IKeyHandler>();
 
     private void Awake()
     {
@@ -31,9 +31,9 @@ public class _KeyInventoryManager : MonoBehaviour
         MonoBehaviour[] allScripts = FindObjectsByType<MonoBehaviour>();
         for (int i = 0; i < allScripts.Length; i++)
         {
-            if (allScripts[i] is iKeyHandler)
+            if (allScripts[i] is IKeyHandler)
             {
-                allLockedObjects.Add(allScripts[i] as iKeyHandler);
+                allLockedObjects.Add(allScripts[i] as IKeyHandler);
             }
         }
     }
@@ -43,7 +43,7 @@ public class _KeyInventoryManager : MonoBehaviour
     //allLockedObjects contains all of the scripts in our scene which use iKeyHandler interface
     public void CollectedKey()
     {
-        foreach (iKeyHandler keyHandler in allLockedObjects)
+        foreach (IKeyHandler keyHandler in allLockedObjects)
         {
             keyHandler.CanUnlock();
         }
@@ -53,7 +53,7 @@ public class _KeyInventoryManager : MonoBehaviour
     //calls RemoveKey() method
     public void UsedKey()
     {
-        foreach (iKeyHandler keyHandler in allLockedObjects)
+        foreach (IKeyHandler keyHandler in allLockedObjects)
         {
             keyHandler.RemoveKey();
         }
