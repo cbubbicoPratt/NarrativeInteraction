@@ -50,8 +50,9 @@ public class _DataManager : MonoBehaviour
 
     public void LoadGame()
     {
-        //TODO: use file writing system to deserialize stored game data on computer and load into this class
-
+        //FINISHED: use file writing system to deserialize stored game data on computer and load into this class
+        this.gameData = fileManager.LoadFile();
+        
         if (this.gameData == null)
         {
             Debug.Log("No game data found. Loaded default data.");
@@ -59,8 +60,12 @@ public class _DataManager : MonoBehaviour
         }
         
         Debug.Log("Loaded player position: " + gameData.playerPos.ToString());
-        //TODO: take _GameData variable in class and "push" to all interface instances
         
+        //FINISHED: take _GameData variable in class and "push" to all interface instances
+        foreach (IDataHandler dataHandler in dataObjs)
+        {
+            dataHandler.LoadData(gameData);
+        }
     }
 
     public void SaveGame()

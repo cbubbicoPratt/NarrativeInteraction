@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using Yarn.Unity;
 
-public class _GameController : MonoBehaviour
+public class _GameController : MonoBehaviour, IDataHandler
 {
     //GameController needs to handle:
     //Collectibles
@@ -48,21 +48,21 @@ public class _GameController : MonoBehaviour
 
     public void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
-        if (scene.buildIndex == 0)
-        {
-            if (loadPos == Vector3.zero)
-            {
-                SpawnPlayer(startPos.position, startPos.rotation);
-            }
-            else
-            {
-                SpawnPlayer(loadPos, loadRot);
-            }
-            if (gateOpen)
-            {
-                Destroy(FindAnyObjectByType<_GateOpen>());
-            }
-        }
+        // if (scene.buildIndex == 0)
+        // {
+        //     if (loadPos == Vector3.zero)
+        //     {
+        //         SpawnPlayer(startPos.position, startPos.rotation);
+        //     }
+        //     else
+        //     {
+        //         SpawnPlayer(loadPos, loadRot);
+        //     }
+        //     if (gateOpen)
+        //     {
+        //         Destroy(FindAnyObjectByType<_GateOpen>());
+        //     }
+        // }
         maxwellUpdate.AddListener(maxwellInv.MaxwellUpdate);
         LoadMaxwells();
         maxwellInv.MaxwellUpdate(totalMaxwells);
@@ -159,6 +159,24 @@ public class _GameController : MonoBehaviour
     public void LoadMaxwellUI(_MaxwellUI maxwellUI)
     {
         maxwellInv = maxwellUI;
+    }
+
+    public void LoadData(_GameData data)
+    {
+        loadPos = data.playerPos;
+        if (loadPos == Vector3.zero)
+        {
+            SpawnPlayer(startPos.position, startPos.rotation);
+        }
+        else
+        {
+            SpawnPlayer(loadPos, loadRot);
+        }
+    }
+
+    public void SaveData(ref _GameData data)
+    {
+        //no data to save (at this time)
     }
 }
 
